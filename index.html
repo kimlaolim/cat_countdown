@@ -20,20 +20,26 @@
 
       <div class="progress-wrapper">
         <div class="progress-container">
-          <div class="image-container">
-            <img
-              src="assets/walking-barry.gif"
-              id="img-left"
-              class="progress-img"
-            />
-            <img
-              src="assets/jumping-mari.gif"
-              id="img-right"
-              class="progress-img"
-            />
+          <div id="barry-progress-bar">
+            <div id="barry-bar">
+              <img
+                src="assets/walking-barry.gif"
+                id="img-left"
+                class="progress-img"
+              />
+            </div>
           </div>
 
-          <div class="progress-bar" id="progress-bar"></div>
+          <div id="mari-progress-bar">
+            <div id="mari-bar">
+              <img
+                src="assets/jumping-mari.gif"
+                id="img-right"
+                class="progress-img"
+              />
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -43,13 +49,17 @@
         return unit < 10 ? "0" + unit : unit;
       }
 
+      const startDate = new Date("July 30, 2024 00:00:00").getTime();
+      const targetDate = new Date("July 11, 2025 00:00:00").getTime();
+
       function updateCountdown() {
-        const targetDate = new Date("July 11, 2025 00:00:00").getTime();
         const now = new Date().getTime();
         const timeLeft = targetDate - now;
 
         if (timeLeft < 0) {
           document.getElementById("countdown").innerText = "00:00:00:00:00";
+          document.getElementById("barry-bar").style.width = "100%";
+          document.getElementById("mari-bar").style.width = "100%";
           return;
         }
 
@@ -68,6 +78,12 @@
         )}:${formatTime(days)}:${formatTime(hours)}:${formatTime(
           minutes
         )}:${formatTime(seconds)}`;
+
+        const elapsed = now - startDate;
+        const totalDuration = targetDate - startDate;
+        const progressPercent = Math.min(100, (elapsed / totalDuration) * 100);
+        document.getElementById("barry-bar").style.width = progressPercent + "%";
+        document.getElementById("mari-bar").style.width = progressPercent + "%";
       }
 
       setInterval(updateCountdown, 1000);
