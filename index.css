@@ -86,6 +86,7 @@ h1 {
   margin: auto;
   border: 3px solid var(--espresso);
   overflow: hidden;
+  display: flex;
 }
 
 .progress-bar {
@@ -123,10 +124,42 @@ h1 {
 }
 
 #img-left {
-  left: 0;
+  position: absolute;
+  right: 0;
+  top: 10%;
+  height: 30px;
 }
 
 #img-right {
+  position: absolute;
+  left: 0;
+  top:10%;
+  height: 30px;
+}
+
+#barry-progress-bar, #mari-progress-bar {
+  width:50%;
+  height: 100%;
+  background-color: #ffd3d3;
+  position: relative;
+}
+
+#barry-bar {
+  width: 20%;
+  height: 100%;
+  background-color: #f4baba;
+  position: relative;
+  overflow: visible;
+}
+
+#mari-bar {
+  width: 20%;
+  height: 100%;
   right: 0;
-  margin-top:-3px;
+  background-color: #f4baba;
+  position: absolute;
+  overflow: visible;
+
+  /* Reverse the direction */
+  direction: rtl;
 }
